@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <!--<link href="style.css" rel="stylesheet" type="text/css" />-->
+        <style>
+            /* CSS */
+            /* * {
+                box-sizing: border-box;
+            } */
+            body {
+                background: #333;
+                padding: 0;
+                margin: 0;
+                overflow: hidden;
+            }
+
+            .game-container {
+                position: relative;
+                width: 1000px;
+                height: 600px;
+                margin: 0 auto;
+                margin-top: 20px;
+                outline: 1px solid #fff;
+            }
+
+            .blue{
+                box-sizing: border-box;
+                width: 1000px;
+                height: 600px;
+            }
+
+            .purple{
+                box-sizing: border-box;
+                position: absolute;
+                width: 1000px;
+                height: 600px;
+                top: 0%;
+                left: 0%
+            }
+
+            .green{
+                box-sizing: border-box;
+                position: absolute;
+                width: 1000px;
+                height: 600px;
+                top: 0%;
+                left: 0%
+            }
+            .brown{
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                /* top: 0%;
+                left: 0% */
+                right: 20%;
+                down: 50%;
+                left: 30%;
+                top: 40%;
+            }
+
+            .orange{
+                position: absolute;
+                width: 50px;
+                height: 60px;
+                 top: 34%;
+                left: 56%
+            }
+        </style>
+
+        <title> SEP </title>
+    </head>
+    <body>
+        <!-- HTML -->
+    <div class = "game-container">
+        <img class = "game-canvas brown" id ="table" src = "img/table.png">
+       <img class = "game-canvas blue" id ="map1" src = "img/sep-room.png">
+       <img class = "game-canvas purple" id ="map2" src = "img/kitchen.png">
+       <img class = "game-canvas green" id ="map3" src = "img/testRoom.png">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <!--<script src="script.js"></script>-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
+        <script>
+
+
+         document.getElementById("map1").addEventListener("click", myFunction);
+         document.getElementById("map2").addEventListener("click", myFunction2);
+         document.getElementById("map3").addEventListener("click", myFunction3);
+
+         document.getElementById("table").addEventListener("click", myFunction5);
+
+         function myFunction5(){
+            document.getElementById("table").style.visibility= "hidden";
+            document.getElementById("map3").style.visibility= "visible";
+         }
+
+
+        document.getElementById("map2").style.visibility= "hidden";
+        document.getElementById("map3").style.visibility= "hidden";
+
+        function myFunction(){
+        document.getElementById("map1").style.visibility= "hidden";
+        document.getElementById("map2").style.visibility= "visible";
+        document.getElementById("map3").style.visibility= "hidden";
+
+        }
+
+        function myFunction2(){
+        document.getElementById("map1").style.visibility= "hidden";
+        document.getElementById("map2").style.visibility= "hidden";
+        document.getElementById("map3").style.visibility= "visible";
+        }
+
+        function myFunction3(){
+        document.getElementById("map1").style.visibility= "visible";
+        document.getElementById("map2").style.visibility= "hidden";
+        document.getElementById("map3").style.visibility= "hidden";
+        }
+
+        
+        </script>
+    </body>
+</html>
