@@ -9,121 +9,262 @@
         <!--<link href="style.css" rel="stylesheet" type="text/css" />-->
         <style>
             /* CSS */
-            /* * {
-                box-sizing: border-box;
-            } */
+           img{
+            position: absolute;
+            top:10%;
+            bottom: 10%;
+            left:30%;
+           }
             body {
-                background: #333;
-                padding: 0;
-                margin: 0;
-                overflow: hidden;
+            background: #5d748b;
+                }
+
+            .hi{
+                background: #5d748b;
             }
 
-            .game-container {
-                position: relative;
-                width: 1000px;
-                height: 600px;
-                margin: 0 auto;
-                margin-top: 20px;
-                outline: 1px solid #fff;
-            }
-
-            .blue{
-                box-sizing: border-box;
-                width: 1000px;
-                height: 600px;
-            }
-
-            .purple{
-                box-sizing: border-box;
-                position: absolute;
-                width: 1000px;
-                height: 600px;
-                top: 0%;
-                left: 0%
-            }
-
-            .green{
-                box-sizing: border-box;
-                position: absolute;
-                width: 1000px;
-                height: 600px;
-                top: 0%;
-                left: 0%
-            }
-            .brown{
-                position: absolute;
-                width: 10px;
-                height: 10px;
-                /* top: 0%;
-                left: 0% */
-                right: 20%;
-                down: 50%;
-                left: 30%;
-                top: 40%;
-            }
-
-            .orange{
-                position: absolute;
-                width: 50px;
-                height: 60px;
-                 top: 34%;
-                left: 56%
+            .message{
+                border-style: outset;
             }
         </style>
 
         <title> SEP </title>
     </head>
     <body>
-        <!-- HTML -->
-    <div class = "game-container">
-        <img class = "game-canvas brown" id ="table" src = "img/table.png">
-       <img class = "game-canvas blue" id ="map1" src = "img/sep-room.png">
-       <img class = "game-canvas purple" id ="map2" src = "img/kitchen.png">
-       <img class = "game-canvas green" id ="map3" src = "img/testRoom.png">
-    </div>
+        <img id = "hola"  width = "700" height = "500" src = "img/sep-room.png">
+
+        <img id = "hola2"  width = "200" height = "200" src = "img/Mr.Mueller.png">
+
+        <!-- <img id = "hola2" width = "600" height = "500" src = "img/kitchen.png"> -->
+        <center><h4 class = "message" id="h"></h4></center>
+      <center><canvas></canvas></center>
+      <center><canvas class = "hi"></canvas></center>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
         <!--<script src="script.js"></script>-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
         <script>
+            var num = 100;
+            const text = document.querySelector("#h");
+            text.innerText = "Health: " + num;
+
+            // creating the size of the canvas
+            const c = document.querySelector('canvas');
+            // const h = document.querySelector('hi');
+            // h.width = 50;
+            // h.height = 50;
+            c.width = 1320;
+            c.height = 1300;
+            const context = c.getContext('2d');
 
 
-         document.getElementById("map1").addEventListener("click", myFunction);
-         document.getElementById("map2").addEventListener("click", myFunction2);
-         document.getElementById("map3").addEventListener("click", myFunction3);
 
-         document.getElementById("table").addEventListener("click", myFunction5);
+            // loading the background and all the sprites
+            const image = new Image();
+            image.src = 'img/map2.png';
 
-         function myFunction5(){
-            document.getElementById("table").style.visibility= "hidden";
-            document.getElementById("map3").style.visibility= "visible";
-         }
+            const player = new Image();
+            player.src = 'img/Mr.Mueller.png';
+
+            const bread = new Image();
+            bread.src = 'img/bread.png';
+
+            const pizza = new Image();
+            pizza.src = 'img/pizza.png';
 
 
-        document.getElementById("map2").style.visibility= "hidden";
-        document.getElementById("map3").style.visibility= "hidden";
+            // const bread = new Image(b);
 
-        function myFunction(){
-        document.getElementById("map1").style.visibility= "hidden";
-        document.getElementById("map2").style.visibility= "visible";
-        document.getElementById("map3").style.visibility= "hidden";
+        // // //         context.drawImage(bread,950,500,50,50);
+        // // context.drawImage(bread,850,500,100,100);
+        // context.drawImage(bread, 500, 500);
+        //  }
 
-        }
+            // creating a class for all sprites
+            class AllSprites {
+                constructor({
+                    position,
+                    image
+                }){
+                    this.position = position;
+                    this.image = image
+                }
+                draw(){
+                    context.drawImage(image, this.position.x, this.position.y);
+                }
+            }
+            document.getElementById("hola").style.visibility= "hidden";
+            document.getElementById("hola2").style.visibility= "hidden";
 
-        function myFunction2(){
-        document.getElementById("map1").style.visibility= "hidden";
-        document.getElementById("map2").style.visibility= "hidden";
-        document.getElementById("map3").style.visibility= "visible";
-        }
+            const secondMap = document.getElementById("hola");
 
-        function myFunction3(){
-        document.getElementById("map1").style.visibility= "visible";
-        document.getElementById("map2").style.visibility= "hidden";
-        document.getElementById("map3").style.visibility= "hidden";
-        }
+            // const context2 = secondMap.getContext('2d');
 
-        
+            const p2 = new AllSprites({
+                position: {
+                    x: 0,
+                    y: 0
+                },
+                image: player
+            })
+
+            const m = new AllSprites({
+                position: {
+                    x: 0,
+                    y: 0
+                },
+                image: image
+            })
+
+            const b = new AllSprites({
+                position: {
+                    x: 0,
+                    y: 0
+                },
+                image: bread
+            })
+
+            const pi = new AllSprites({
+                position: {
+                    x: 400,
+                    y: 500
+                },
+                image: pizza
+            })
+
+
+            const keys = {
+                w: {
+                    pressed: false
+                },
+                s: {
+                    pressed: false
+                },
+
+                a: {
+                    pressed: false
+                },
+                d: {
+                    pressed: false
+                },
+
+                q: {
+                    pressed: false
+                }
+            }
+
+            document.getElementById("hola").addEventListener("click", myFunction);
+
+            var num1 = 0;
+            function myFunction(){
+                secondMap.style.visibility= "hidden";
+
+            }
+
+            var food = bread;
+            const player2 = document.getElementById("hola2");
+
+            // function battle() {
+            //     window.requestAnimationFrame(battle);
+            //     secondMap.draw();
+            //     context.drawImage(player,950,500,250,250);
+            // }
+            // battle();
+            // const p = player2.style.visibility= "visible";
+            function character(){
+                    player2.style.visibility= "visible";
+
+                }
+                character();
+
+
+            function keyPressed() {
+                window.requestAnimationFrame(keyPressed);
+                m.draw();
+
+                context.drawImage(player,950,500,250,250);
+                context.drawImage(pizza,950,500,200,200);
+                context.drawImage(food,950,440,200,200);
+                if(keys.w.pressed){
+                    m.position.y = m.position.y += 3;
+                    const y = Math.min(Math.max(parseInt(m.position.y), -699), 460);
+                    .position.y += 3;
+                }
+                else if(keys.a.pressed){
+                    m.position.x += 3;
+                    console.log(m.position.x);
+                    m.position.x = Math.min(Math.max(parseInt(m.position.x), -267), 897);
+                }
+                else if(keys.d.pressed){
+                    m.position.x -= 3;
+                    console.log(m.position.x);
+                    m.position.x = Math.min(Math.max(parseInt(m.position.x), -267), 897);
+                }
+                 else if(keys.s.pressed){
+                    m.position.y -= 3;
+                    console.log(m.position.y);
+                    m.position.y = Math.min(Math.max(parseInt(m.position.y), -699), 460);
+                }else if(keys.q.pressed){
+                    // document.getElementById("hola").style.visibility= "visible";
+                    player2.style.visibility= "visible";
+                    // context.drawImage(player2,950,500,250,250);
+                    }
+            }
+            keyPressed();
+
+
+
+            window.addEventListener('keydown', (e) => {
+                switch(e.key){
+                    case 'w':
+                    keys.w.pressed = true;
+                    // character.position.y += 3;
+                    break;
+
+                    case 'q':
+                    keys.q.pressed = true;
+                    break;
+
+                    case 'a':
+                    keys.a.pressed = true;
+                    break;
+
+                    case 's':
+                    keys.s.pressed = true;
+                    break;
+
+                    case 'd':
+                    keys.d.pressed = true;
+                    break;
+                }
+            })
+
+            window.addEventListener('keyup', (e) => {
+                switch(e.key){
+                    case 'w':
+                    keys.w.pressed = false;
+                    break;
+
+                    case 'q':
+                    keys.q.pressed = false;
+                    break;
+
+
+                    case 'a':
+                    keys.a.pressed = false;
+                    break;
+
+                    case 's':
+                    keys.s.pressed = false;
+                    break;
+
+                    case 'd':
+                    keys.d.pressed = false;
+                    break;
+                }
+            })
         </script>
     </body>
 </html>
