@@ -185,12 +185,11 @@
                 m.draw();
 
                 context.drawImage(player,950,500,250,250);
-                context.drawImage(pizza,950,500,200,200);
+              
                 context.drawImage(food,950,440,200,200);
                 if(keys.w.pressed){
                     m.position.y = m.position.y += 3;
                     const y = Math.min(Math.max(parseInt(m.position.y), -699), 460);
-                    .position.y += 3;
                 }
                 else if(keys.a.pressed){
                     m.position.x += 3;
