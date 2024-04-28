@@ -26,19 +26,106 @@
             .message{
                 border-style: outset;
             }
+
+            .background{
+                background-color: black;
+                position: relative;
+                top: 0%;
+                bottom: 0%;
+                left:0%;
+                right:0%;
+            }
+
+            #hi123{
+                position: absolute;
+
+                top: 45%;
+                left: 35%;
+                /* top: 45%;
+                right: 40%;
+                left: 35%;
+                down: 40% */
+            }
+
+            #hi12{
+                position: absolute;
+                top: 50%;
+                left: 35%;
+                /* top: 50%;
+                right: 90%;
+                left: 100%;
+                down: 40% */
+            }
+
+            #hi1{
+                position: absolute;
+                top: 55%;
+                left: 35%;
+                /* top: 55%;
+                right: 40%;
+                left: 30%;
+                down: 40% */
+            }
+
+            .size{
+                position: absolute;
+                top: 20%;
+                right: 50%;
+                left: 40%;
+                down: 70%
+
+            }
+
+            #cookie{
+                background-color: black;
+                position: absolute;
+                top: 55%;
+                left: 55%;
+                right: 60%;
+
+            }
+
+            #b9{
+                position: absolute;
+                top: 24%;
+                left: 33%;
+
+            }
+
+            #p{
+                position: absolute;
+                top: 30%;
+                left: 64%;
+            }
         </style>
 
         <title> SEP </title>
     </head>
     <body>
-        <img id = "hola"  width = "700" height = "500" src = "img/sep-room.png">
+
 
         <img id = "hola2"  width = "200" height = "200" src = "img/Mr.Mueller.png">
 
+
         <!-- <img id = "hola2" width = "600" height = "500" src = "img/kitchen.png"> -->
-        <center><h4 class = "message" id="h"></h4></center>
+        <center><h4><span id = "newScore">100</span></h4></center>
       <center><canvas></canvas></center>
+      <div>
+        <img id = "hola"  width = "700" height = "500" class = "size" src = "img/sep-room.png">
+        <div  id = "hello" class = "background" style = "display: incline-block"></div>
+        <!-- <center><h1> GAME OVER ! (PRESS Q to EXIT THE GAME) </h1></center>
+        <center> <h3 class = >Score: </h3><span id="new">100</span></center> -->
+
       <center><canvas class = "hi"></canvas></center>
+    </div>
+
+    <div id = "cookie" width = "40" height="30"> </div>
+    <img id = "b9" src = "img/bread.png">
+    <img id = "p" width = "400" height = "400" src = "img/pizza.png">
+
+    <button id = "hi123"> Attack </button>
+    <button id = "hi12"> Jump   </button>
+    <button id = "hi1"> Run   </button>
 
 
 
@@ -46,12 +133,30 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
         <!--<script src="script.js"></script>-->
         <script>
-            var num = 100;
-            const text = document.querySelector("#h");
-            text.innerText = "Health: " + num;
+
+
+            let num = 100;
+
+
+            // var num = 100
+            // var num = 100
+console.log(num);
+
+            var num9 = 0;
+            const text = document.querySelector('#newScore');
+
+            const gameOver = document.querySelector('h1');
+
+
+            // console.log(num);
+
+
+
+
 
             // creating the size of the canvas
             const c = document.querySelector('canvas');
+
             // const h = document.querySelector('hi');
             // h.width = 50;
             // h.height = 50;
@@ -74,6 +179,12 @@
             const pizza = new Image();
             pizza.src = 'img/pizza.png';
 
+            const mainRoom = new Image();
+            mainRoom.src = 'img/sep-room.png';
+
+            const burger = new Image();
+            burger.src = 'img/hamburger.png';
+
 
             // const bread = new Image(b);
 
@@ -95,12 +206,86 @@
                     context.drawImage(image, this.position.x, this.position.y);
                 }
             }
+
+            class sprites {
+                constructor({
+                    position,
+                    image,
+                    frames = { max: 1}
+                }){
+                    this.position = position
+                    this.image = image
+                    this.frames = frames
+
+
+                    this.image.onload = () => {
+                        this.width = this.image.width/ this.frames.max
+                        this.height = this.image.height / this.frames.max
+                    }
+                }
+                draw(){
+                    context.drawImage(this.image,this.position.x, this.position.y);
+                }
+            }
             document.getElementById("hola").style.visibility= "hidden";
             document.getElementById("hola2").style.visibility= "hidden";
+            document.getElementById("hi123").style.visibility= "hidden";
+            document.getElementById("hi12").style.visibility= "hidden";
+            document.getElementById("hi1").style.visibility= "hidden";
+            document.getElementById("b9").style.visibility= "hidden";
+            document.getElementById("p").style.visibility= "hidden";
+            const backgroundMap = document.getElementById("hello");
+
+
+            // document.getElementById("cookie").style.visibility= "visible";
+            // backgroundMap.style.visibility = "hidden";
+            // backgroundMap.style.visibility= "visible";
 
             const secondMap = document.getElementById("hola");
 
+
             // const context2 = secondMap.getContext('2d');
+
+            const pi = new sprites({
+                position: {
+                    x: 500,
+                    y: 600
+                },
+                image: bread
+            })
+
+
+            const player3 = new sprites({
+                position: {
+                    x: 950,
+                    y: 500
+                },
+                image: player
+            })
+
+             const pizza2 = new sprites({
+                position: {
+                    x: 69,
+                    y: 729
+                },
+                    image: pizza
+             })
+
+             const mainRoom2 = new sprites({
+                position: {
+                    x: 50,
+                    y: 50
+                },
+                    image: mainRoom
+             })
+
+             const hamburger = new sprites({
+                position: {
+                    x: 120,
+                    y: 350
+                },
+                    image: burger
+             })
 
             const p2 = new AllSprites({
                 position: {
@@ -120,18 +305,10 @@
 
             const b = new AllSprites({
                 position: {
-                    x: 0,
-                    y: 0
+                    x: 200,
+                    y: 100
                 },
                 image: bread
-            })
-
-            const pi = new AllSprites({
-                position: {
-                    x: 400,
-                    y: 500
-                },
-                image: pizza
             })
 
 
@@ -152,16 +329,17 @@
 
                 q: {
                     pressed: false
+                },
+                y: {
+                    pressed: false
                 }
             }
 
-            document.getElementById("hola").addEventListener("click", myFunction);
 
-            var num1 = 0;
-            function myFunction(){
-                secondMap.style.visibility= "hidden";
 
-            }
+
+
+            let num1 = 0;
 
             var food = bread;
             const player2 = document.getElementById("hola2");
@@ -172,47 +350,149 @@
             //     context.drawImage(player,950,500,250,250);
             // }
             // battle();
-            // const p = player2.style.visibility= "visible";
-            function character(){
-                    player2.style.visibility= "visible";
+            // // const p = player2.style.visibility= "visible";
+            // function character(){
+            //         player2.style.visibility= "visible";
 
-                }
-                character();
+            //     }
+            //     character();
+
+
+
+            // function battle(){
+            //     window.requestAnimationFrame(battle);
+            //     if(pi.position.x && m.position.x = 500){
+            //         c.fillStyle = 'black';
+            //         c.fillRect(0, 0, c.width, c.height);
+            //     }
+
+            // }
+            // battle();
+
+            // backgroundMap.style.visibility = "hidden";
+
 
 
             function keyPressed() {
                 window.requestAnimationFrame(keyPressed);
                 m.draw();
+                pi.draw();
+                pizza2.draw();
+                hamburger.draw();
+                player3.draw();
 
-                context.drawImage(player,950,500,250,250);
-              
-                context.drawImage(food,950,440,200,200);
+
+                if(player3.position.x <= pi.position.x && player3.position.x >= pi.position.x){
+                    console.log("collision");
+                    // context.fillStyle = 'black';
+                    // context.fillRect(0, 0, c.width, c.height);
+
+                    secondMap.style.visibility = "visible";
+                    document.getElementById("hi123").style.visibility= "visible";
+
+
+                    document.getElementById("hi12").style.visibility= "visible";
+                    document.getElementById("hi1").style.visibility= "visible";
+                    document.getElementById("b9").style.visibility= "visible";
+
+                    document.getElementById("hi123").addEventListener('click', myFunction)
+
+                        function myFunction(){
+                            num = num-20;
+                        text.innerHTML = num;
+                        console.log(num);
+
+                        if( num < 0){
+                            num = num + 20;
+
+                        }
+                        }
+
+
+
+            //             if(num = 0){
+            //                 num = num+100;
+            // secondMap.style.visibility = "hidden";
+            // document.getElementById("hi123").style.visibility= "hidden";
+            // document.getElementById("hi12").style.visibility= "hidden";
+            // document.getElementById("hi1").style.visibility= "hidden";
+
+            //             }
+
+
+                }
+
+                if(player3.position.x <= hamburger.position.x && player3.position.x >= hamburger.position.x){
+                    console.log("collision");
+                    context.fillStyle = 'black';
+                    context.fillRect(0, 0, c.width, c.height);
+                    secondMap.style.visibility = "visible";
+                }
+
+                if(player3.position.x <= pizza2.position.x && player3.position.x >= pizza2.position.x){
+                    console.log("collision");
+                    context.fillStyle = 'black';
+                    context.fillRect(0, 0, c.width, c.height);
+                    backgroundMap.style.visibility = "visible";
+                }
+
+
+
+
+                // context.drawImage(player,950,500,250,250);
+
+                context.drawImage(food,1040,550,200,200);
+
                 if(keys.w.pressed){
                     m.position.y = m.position.y += 3;
-                    const y = Math.min(Math.max(parseInt(m.position.y), -699), 460);
+                    const y = Math.min(Math.max(parseInt(m.position.y), -527), 603);
+                    console.log(m.position.y);
+                    pi.position.y += 3;
+                    pizza2.position.y += 3;
+                    hamburger.position.y += 3;
+
                 }
                 else if(keys.a.pressed){
                     m.position.x += 3;
+                    m.position.x = Math.min(Math.max(parseInt(m.position.x), -81), 960);
+                    pi.position.x += 3;
                     console.log(m.position.x);
-                    m.position.x = Math.min(Math.max(parseInt(m.position.x), -267), 897);
+                    pizza2.position.x += 3;
+                    hamburger.position.x += 3;
                 }
                 else if(keys.d.pressed){
                     m.position.x -= 3;
                     console.log(m.position.x);
-                    m.position.x = Math.min(Math.max(parseInt(m.position.x), -267), 897);
+                    m.position.x = Math.min(Math.max(parseInt(m.position.x), -81), 960);
+                    pi.position.x -= 3;
+                    pizza2.position.x -= 3;
+                    hamburger.position.x -= 3;
                 }
                  else if(keys.s.pressed){
                     m.position.y -= 3;
                     console.log(m.position.y);
-                    m.position.y = Math.min(Math.max(parseInt(m.position.y), -699), 460);
+                    m.position.y = Math.min(Math.max(parseInt(m.position.y), -527), 603);
+                    pi.position.y -= 3;
+                    pizza2.position.y -= 3;
+
+                    hamburger.position.y -= 3;
+
                 }else if(keys.q.pressed){
-                    // document.getElementById("hola").style.visibility= "visible";
-                    player2.style.visibility= "visible";
-                    // context.drawImage(player2,950,500,250,250);
-                    }
+
+            secondMap.style.visibility = "hidden";
+            document.getElementById("hi123").style.visibility= "hidden";
+            document.getElementById("hi12").style.visibility= "hidden";
+            document.getElementById("hi1").style.visibility= "hidden";
+
+            }else if(keys.y.pressed){
+
+
+                document.getElementById("p").style.visibility= "visible";
+
+                }
+
             }
             keyPressed();
-
 
 
             window.addEventListener('keydown', (e) => {
@@ -234,6 +514,10 @@
                     keys.s.pressed = true;
                     break;
 
+                    case 'y':
+                    keys.y.pressed = true;
+                    break;
+
                     case 'd':
                     keys.d.pressed = true;
                     break;
@@ -248,6 +532,10 @@
 
                     case 'q':
                     keys.q.pressed = false;
+                    break;
+
+                    case 'y':
+                    keys.y.pressed = false;
                     break;
 
 
