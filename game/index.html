@@ -97,6 +97,29 @@
                 top: 30%;
                 left: 64%;
             }
+
+            .happy2{
+                position: absolute;
+                top: 70%;
+                left: 45%;
+            }
+
+            .happy{
+                position: absolute;
+                top: 70%;
+                left: 72%;
+            }
+
+            .happy3{
+                position: absolute;
+                top: 50%;
+                left: 43%;
+                color: white;
+                /* text-size: 30px; */
+            }
+
+
+
         </style>
 
         <title> SEP </title>
@@ -113,8 +136,10 @@
       <div>
         <img id = "hola"  width = "700" height = "500" class = "size" src = "img/sep-room.png">
         <div  id = "hello" class = "background" style = "display: incline-block"></div>
-        <!-- <center><h1> GAME OVER ! (PRESS Q to EXIT THE GAME) </h1></center>
-        <center> <h3 class = >Score: </h3><span id="new">100</span></center> -->
+        <!-- <center><h2 class = "happy3"> GAME OVER ! (PRESS Q to EXIT THE GAME) </h2></center> -->
+        <center> <h3  id = "chocolate" class = "happy2">Score: <span id="new">100</span></h3></center>
+        <center> <h3 id = "strawberry" class = "happy" >Score: <span id="new2">100</span></h3></center>
+
 
       <center><canvas class = "hi"></canvas></center>
     </div>
@@ -135,17 +160,22 @@
         <script>
 
 
-            let num = 100;
+            let num = 0;
+
+            let score1 = 100;
+            let score2 = 100;
 
 
             // var num = 100
             // var num = 100
-console.log(num);
+            console.log(num);
 
             var num9 = 0;
             const text = document.querySelector('#newScore');
+            const playerScore = document.querySelector('#new');
+            const spriteScore = document.querySelector('#new2');
 
-            const gameOver = document.querySelector('h1');
+            const gameOver = document.querySelector("h2");
 
 
             // console.log(num);
@@ -228,12 +258,23 @@ console.log(num);
                 }
             }
             document.getElementById("hola").style.visibility= "hidden";
+
             document.getElementById("hola2").style.visibility= "hidden";
+
             document.getElementById("hi123").style.visibility= "hidden";
+
             document.getElementById("hi12").style.visibility= "hidden";
+
             document.getElementById("hi1").style.visibility= "hidden";
+
             document.getElementById("b9").style.visibility= "hidden";
+
             document.getElementById("p").style.visibility= "hidden";
+
+            document.getElementById("strawberry").style.visibility= "hidden";
+
+            document.getElementById("chocolate").style.visibility= "hidden";
+
             const backgroundMap = document.getElementById("hello");
 
 
@@ -395,31 +436,75 @@ console.log(num);
                     document.getElementById("hi1").style.visibility= "visible";
                     document.getElementById("b9").style.visibility= "visible";
 
-                    document.getElementById("hi123").addEventListener('click', myFunction)
+                    document.getElementById("strawberry").style.visibility= "visible";
+                    document.getElementById("chocolate").style.visibility= "visible";
+
+
+                    // Attack Button
+                    document.getElementById("hi123").addEventListener('click', myFunction);
+                    // Jump Button
+                    document.getElementById("hi12").addEventListener('click', myFunction2);
+                    // Run Button
+                    document.getElementById("hi1").addEventListener('click', myFunction3);
+
 
                         function myFunction(){
-                            num = num-20;
-                        text.innerHTML = num;
+                            score1 = score1 - 30;
+                            score2 = score2 -20;
+
+                            playerScore.innerHTML = score2;
+                            spriteScore.innerHTML = score1;
+
+                            if(score1 <= 0){
+                            console.log("You win!");
+                        }
+
                         console.log(num);
-
-                        if( num < 0){
-                            num = num + 20;
-
-                        }
                         }
 
+                        function myFunction2(){
+
+                        score1 = score1 -10;
+                        score2 = score2 -20;
+
+                        playerScore.innerHTML = score2;
+                        spriteScore.innerHTML = score1;
+
+                        if(score1 <= 0){
+                            console.log("You win!");
+                        }
 
 
-            //             if(num = 0){
-            //                 num = num+100;
+                        }
+
+                        function myFunction3(){
+                        score1 = score1 -10;
+                        score2 = score2 -0;
+
+                        playerScore.innerHTML = score2;
+                        spriteScore.innerHTML = score1;
+
+                        let num8 = 100;
+
+                        if(score1 <= 0){
+
+                            food = pizza;
+
+                            console.log("You win!");
+                        }
+
+                        }
+
+
+
+
+            // if(num = 0){
+            // num = num+100;
             // secondMap.style.visibility = "hidden";
             // document.getElementById("hi123").style.visibility= "hidden";
             // document.getElementById("hi12").style.visibility= "hidden";
             // document.getElementById("hi1").style.visibility= "hidden";
-
-            //             }
-
-
+            //  }
                 }
 
                 if(player3.position.x <= hamburger.position.x && player3.position.x >= hamburger.position.x){
@@ -433,7 +518,7 @@ console.log(num);
                     console.log("collision");
                     context.fillStyle = 'black';
                     context.fillRect(0, 0, c.width, c.height);
-                    backgroundMap.style.visibility = "visible";
+                    secondMap.style.visibility = "visible";
                 }
 
 
@@ -483,6 +568,11 @@ console.log(num);
             document.getElementById("hi123").style.visibility= "hidden";
             document.getElementById("hi12").style.visibility= "hidden";
             document.getElementById("hi1").style.visibility= "hidden";
+            document.getElementById("p").style.visibility= "hidden";
+            document.getElementById("b9").style.visibility= "hidden";
+
+            document.getElementById("strawberry").style.visibility= "hidden";
+                    document.getElementById("chocolate").style.visibility= "hidden";
 
             }else if(keys.y.pressed){
 
