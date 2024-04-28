@@ -29,7 +29,7 @@
 
             .background{
                 background-color: black;
-                position: relative;
+                position: absolute;
                 top: 0%;
                 bottom: 0%;
                 left:0%;
@@ -113,9 +113,26 @@
             .happy3{
                 position: absolute;
                 top: 50%;
-                left: 43%;
+                left: 33%;
                 color: white;
                 /* text-size: 30px; */
+            }
+
+            #p2{
+                position: absolute;
+                top: 24%;
+                left: 33%;
+
+            }
+
+            .hi0{
+                background-color: black;
+                position: absolute;
+                top: 20%;
+                right: 50%;
+                left: 40%;
+                down: 70%
+
             }
 
 
@@ -131,14 +148,19 @@
 
 
         <!-- <img id = "hola2" width = "600" height = "500" src = "img/kitchen.png"> -->
-        <center><h4><span id = "newScore">100</span></h4></center>
+        <center><h4>READ THE INSTRUCTIONS BEFORE STARTING THE GAME <button type="submit" formaction="../instructions/instructions.html">Instructions</button></h4></center>
+        <!-- <span id = "newScore">100</span></h4> -->
       <center><canvas></canvas></center>
+      <div id = "hi0" class = "hi0"></div>
       <div>
         <img id = "hola"  width = "700" height = "500" class = "size" src = "img/sep-room.png">
-        <div  id = "hello" class = "background" style = "display: incline-block"></div>
-        <!-- <center><h2 class = "happy3"> GAME OVER ! (PRESS Q to EXIT THE GAME) </h2></center> -->
+        <div  id = "hello" class = "background" width = "1000" height = "1000" ></div>
+        <center><h2  id = "win" class = "happy3"> You Won! (PRESS Q to EXIT THE GAME) </h2></center>
+        <center><h2  id = "gameOver" class = "happy3"> GAME OVER! (PRESS Q to EXIT THE GAME) </h2></center>
         <center> <h3  id = "chocolate" class = "happy2">Score: <span id="new">100</span></h3></center>
         <center> <h3 id = "strawberry" class = "happy" >Score: <span id="new2">100</span></h3></center>
+        <center> <h3 id = "vanilla" class = "happy" >Score: <span id="new3">100</span></h3></center>
+
 
 
       <center><canvas class = "hi"></canvas></center>
@@ -147,6 +169,7 @@
     <div id = "cookie" width = "40" height="30"> </div>
     <img id = "b9" src = "img/bread.png">
     <img id = "p" width = "400" height = "400" src = "img/pizza.png">
+    <img id = "p2" width = "400" height = "400" src = "img/pizza.png">
 
     <button id = "hi123"> Attack </button>
     <button id = "hi12"> Jump   </button>
@@ -158,6 +181,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
         <!--<script src="script.js"></script>-->
         <script>
+
+document.getElementById("hello").style.visibility= "hidden";
 
 
             let num = 0;
@@ -174,15 +199,17 @@
             const text = document.querySelector('#newScore');
             const playerScore = document.querySelector('#new');
             const spriteScore = document.querySelector('#new2');
+            const secondScore = document.querySelector('#new3');
 
-            const gameOver = document.querySelector("h2");
+            const gameOver = document.getElementById("gameOver");
+            const win = document.getElementById("win");
+
+            gameOver.style.visibility= "hidden";
+            win.style.visibility= "hidden";
+
 
 
             // console.log(num);
-
-
-
-
 
             // creating the size of the canvas
             const c = document.querySelector('canvas');
@@ -271,9 +298,17 @@
 
             document.getElementById("p").style.visibility= "hidden";
 
+            document.getElementById("p2").style.visibility= "hidden";
+
             document.getElementById("strawberry").style.visibility= "hidden";
 
             document.getElementById("chocolate").style.visibility= "hidden";
+            document.getElementById("vanilla").style.visibility= "hidden";
+
+
+            // background
+
+            document.getElementById("hi0").style.visibility= "visible";
 
             const backgroundMap = document.getElementById("hello");
 
@@ -377,9 +412,6 @@
             }
 
 
-
-
-
             let num1 = 0;
 
             var food = bread;
@@ -412,7 +444,7 @@
 
             // backgroundMap.style.visibility = "hidden";
 
-
+                let newScore6 = 100;
 
             function keyPressed() {
                 window.requestAnimationFrame(keyPressed);
@@ -436,6 +468,8 @@
                     document.getElementById("hi1").style.visibility= "visible";
                     document.getElementById("b9").style.visibility= "visible";
 
+                    document.getElementById("p").style.visibility= "visible";
+
                     document.getElementById("strawberry").style.visibility= "visible";
                     document.getElementById("chocolate").style.visibility= "visible";
 
@@ -457,9 +491,30 @@
 
                             if(score1 <= 0){
                             console.log("You win!");
+
+                            document.getElementById("hello").style.visibility= "visible";
+                           win.style.visibility= "visible";
+                           score1 = 100;
+                           score2 = 100;
+                            food = pizza;
+                            document.getElementById("hi123").style.visibility= "hidden";
+                            document.getElementById("hi12").style.visibility= "hidden";
+                            document.getElementById("hi1").style.visibility= "hidden";
+                            document.getElementById("p").style.visibility= "hidden";
+                            document.getElementById("b9").style.visibility= "hidden";
                         }
 
-                        console.log(num);
+                        if(score2 <= 0){
+                            document.getElementById("hello").style.visibility= "visible";
+                           gameOver.style.visibility= "visible";
+                           score1 = 100;
+                           score2 = 100;
+                            document.getElementById("hi123").style.visibility= "hidden";
+                            document.getElementById("hi12").style.visibility= "hidden";
+                            document.getElementById("hi1").style.visibility= "hidden";
+                            document.getElementById("p").style.visibility= "hidden";
+                            document.getElementById("b9").style.visibility= "hidden";
+                        }
                         }
 
                         function myFunction2(){
@@ -470,11 +525,34 @@
                         playerScore.innerHTML = score2;
                         spriteScore.innerHTML = score1;
 
+
                         if(score1 <= 0){
                             console.log("You win!");
+                            document.getElementById("hello").style.visibility= "visible";
+                           win.style.visibility= "visible";
+                           score1 = 100;
+                           score2 = 100;;
+                            food = pizza;
+
+                            document.getElementById("hi123").style.visibility= "hidden";
+                            document.getElementById("hi12").style.visibility= "hidden";
+                            document.getElementById("hi1").style.visibility= "hidden";
+                            document.getElementById("p").style.visibility= "hidden";
+                            document.getElementById("b9").style.visibility= "hidden";
                         }
 
 
+                        if(score2 <= 0){
+                            document.getElementById("hello").style.visibility= "visible";
+                           gameOver.style.visibility= "visible";
+                           score1 = 100;
+                           score2 = 100;
+                            document.getElementById("hi123").style.visibility= "hidden";
+                            document.getElementById("hi12").style.visibility= "hidden";
+                            document.getElementById("hi1").style.visibility= "hidden";
+                            document.getElementById("p").style.visibility= "hidden";
+                            document.getElementById("b9").style.visibility= "hidden";
+                        }
                         }
 
                         function myFunction3(){
@@ -487,10 +565,30 @@
                         let num8 = 100;
 
                         if(score1 <= 0){
-
+                            document.getElementById("hello").style.visibility= "visible";
+                           win.style.visibility= "visible";
+                           score1 = 100;
+                           score2 = 100;
                             food = pizza;
+                            document.getElementById("hi123").style.visibility= "hidden";
+                            document.getElementById("hi12").style.visibility= "hidden";
+                            document.getElementById("hi1").style.visibility= "hidden";
+                            document.getElementById("p").style.visibility= "hidden";
+                            document.getElementById("b9").style.visibility= "hidden";
 
                             console.log("You win!");
+                        }
+
+                        if(score2 <= 0){
+                            document.getElementById("hello").style.visibility= "visible";
+                           gameOver.style.visibility= "visible";
+                           score1 = 100;
+                           score2 = 100;
+                            document.getElementById("hi123").style.visibility= "hidden";
+                            document.getElementById("hi12").style.visibility= "hidden";
+                            document.getElementById("hi1").style.visibility= "hidden";
+                            document.getElementById("p").style.visibility= "hidden";
+                            document.getElementById("b9").style.visibility= "hidden";
                         }
 
                         }
@@ -507,20 +605,6 @@
             //  }
                 }
 
-                if(player3.position.x <= hamburger.position.x && player3.position.x >= hamburger.position.x){
-                    console.log("collision");
-                    context.fillStyle = 'black';
-                    context.fillRect(0, 0, c.width, c.height);
-                    secondMap.style.visibility = "visible";
-                }
-
-                if(player3.position.x <= pizza2.position.x && player3.position.x >= pizza2.position.x){
-                    console.log("collision");
-                    context.fillStyle = 'black';
-                    context.fillRect(0, 0, c.width, c.height);
-                    secondMap.style.visibility = "visible";
-                }
-
 
 
 
@@ -530,16 +614,17 @@
 
                 if(keys.w.pressed){
                     m.position.y = m.position.y += 3;
-                    const y = Math.min(Math.max(parseInt(m.position.y), -527), 603);
+                    const y = Math.min(Math.max(parseInt(m.position.y), -327), 807);
                     console.log(m.position.y);
                     pi.position.y += 3;
+                    console.log(m.position.y);
                     pizza2.position.y += 3;
                     hamburger.position.y += 3;
 
                 }
                 else if(keys.a.pressed){
                     m.position.x += 3;
-                    m.position.x = Math.min(Math.max(parseInt(m.position.x), -81), 960);
+                    m.position.x = Math.min(Math.max(parseInt(m.position.x), -84), 958);
                     pi.position.x += 3;
                     console.log(m.position.x);
                     pizza2.position.x += 3;
@@ -548,7 +633,7 @@
                 else if(keys.d.pressed){
                     m.position.x -= 3;
                     console.log(m.position.x);
-                    m.position.x = Math.min(Math.max(parseInt(m.position.x), -81), 960);
+                    m.position.x = Math.min(Math.max(parseInt(m.position.x), -84), 958);
                     pi.position.x -= 3;
                     pizza2.position.x -= 3;
                     hamburger.position.x -= 3;
@@ -556,7 +641,7 @@
                  else if(keys.s.pressed){
                     m.position.y -= 3;
                     console.log(m.position.y);
-                    m.position.y = Math.min(Math.max(parseInt(m.position.y), -527), 603);
+                    m.position.y = Math.min(Math.max(parseInt(m.position.y), -327), 807);
                     pi.position.y -= 3;
                     pizza2.position.y -= 3;
 
@@ -572,14 +657,21 @@
             document.getElementById("b9").style.visibility= "hidden";
 
             document.getElementById("strawberry").style.visibility= "hidden";
-                    document.getElementById("chocolate").style.visibility= "hidden";
+            document.getElementById("chocolate").style.visibility= "hidden";
+
+            document.getElementById("hello").style.visibility= "hidden";
+            gameOver.style.visibility= "hidden";
+            win.style.visibility = "hidden";
 
             }else if(keys.y.pressed){
 
 
-                document.getElementById("p").style.visibility= "visible";
+                if(player3.position.x <= pi.position.x && player3.position.x >= pi.position.x){
+                    document.getElementById("p").style.visibility= "visible";
+                }
 
                 }
+
 
             }
             keyPressed();
