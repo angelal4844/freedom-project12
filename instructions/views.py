@@ -22,6 +22,10 @@ def instructions_view(request):
             <p>Y: spawn the enemy</p>
             <h2>There will be buttons that appear when you will be able to select</h2>
 
+            <h2>To go back, click on the button</h2>
+            <button type="button" onclick="https://angelal4844.github.io/freedom-project12/instructions/instructions.html">Click Me!</button>
+
+
         </body>
     </html>
     """
