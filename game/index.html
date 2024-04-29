@@ -87,7 +87,7 @@
 
             #b9{
                 position: absolute;
-                top: 24%;
+                top: 15%;
                 left: 33%;
 
             }
@@ -135,6 +135,12 @@
 
             }
 
+            #p6{
+                position: absolute;
+                top: 30%;
+                left: 64%;
+            }
+
 
 
         </style>
@@ -148,10 +154,11 @@
 
 
         <!-- <img id = "hola2" width = "600" height = "500" src = "img/kitchen.png"> -->
-        <center><h4>READ THE INSTRUCTIONS BEFORE STARTING THE GAME </h4></center>
-        <a id = "hello10" href = "../instructions/instructions.html">
-        <button type="button">Instructions</button>
-        </a>
+        <center><h4> PLEASE READ THE INSTRUCTIONS BEFORE STARTING THE GAME
+            <a id = "hello10" href = "../instructions/instructions.html">
+                <button type="button">Instructions</button>
+                </a>
+        </h4></center>
 
         <!-- <span id = "newScore">100</span></h4> -->
 
@@ -173,9 +180,10 @@
     </div>
 
     <div id = "cookie" width = "40" height="30"> </div>
-    <img id = "b9" src = "img/bread.png">
+    <img id = "b9" src = "img/Mr.Mueller.png">
     <img id = "p" width = "400" height = "400" src = "img/pizza.png">
-    <img id = "p2" width = "400" height = "400" src = "img/pizza.png">
+    <img id = "p6" width = "400" height = "400" src = "img/bread.png">
+    <img id = "p2" width = "400" height = "400" src = "img/bread.png">
 
     <button id = "hi123"> Attack </button>
     <button id = "hi12"> Jump   </button>
@@ -189,10 +197,8 @@
         <script>
 
         document.getElementById("hello").style.visibility= "hidden";
-
-
-
-            let num = 0;
+        document.getElementById("p6").style.visibility= "hidden";
+         let num = 0;
 
             let score1 = 100;
             let score2 = 100;
@@ -671,11 +677,6 @@
             win.style.visibility = "hidden";
 
             }else if(keys.y.pressed){
-
-
-                if(player3.position.x <= pi.position.x && player3.position.x >= pi.position.x){
-                    document.getElementById("p").style.visibility= "visible";
-                }
 
                 }
 
