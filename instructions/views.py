@@ -17,7 +17,13 @@ def instructions_view(request):
             <p>W: up</p>
             <p>S: down</p>
             <p>D: right</p>
+
+            <h2>Here are some others:</h2>
+            <p>Y: spawn the enemy</p>
+            <h2>There will be buttons that appear when you will be able to select</h2>
+
         </body>
     </html>
     """
     return HttpResponse(html)
+
