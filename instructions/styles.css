@@ -1,0 +1,11 @@
+body {
+    font-family: tapestry;
+    background-image: url(https://images.pexels.com/photos/636353/pexels-photo-636353.jpeg?cs=srgb&dl=pexels-magda-ehlers-pexels-636353.jpg&fm=jpg);
+    color: black;
+    margin: 50px 50px 50px 50px;
+}
+
+.para {
+    padding: 0px;
+    border: 0px;
+}
