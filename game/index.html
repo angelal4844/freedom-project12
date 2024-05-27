@@ -642,6 +642,9 @@
             const np41 = new Image();
             np41.src = 'img/pixil-frame-0 (41).png';
 
+            const np42 = new Image();
+            np42.src = 'img/character.png';
+
             // const bread = new Image(b);
 
         // // //         context.drawImage(bread,950,500,50,50);
@@ -767,6 +770,14 @@
                     y: 100,
                 },
                     image: np10
+             })
+
+             const a42 = new sprites({
+                position: {
+                    x: 200,
+                    y: 100,
+                },
+                    image: np42
              })
 
              const a4 = new sprites({
@@ -1139,6 +1150,7 @@
                 a30.draw();
                 a31.draw();
                 a32.draw();
+                a42.draw();
 
 
 
@@ -1335,6 +1347,7 @@
                     a30.position.y +=3;
                     a31.position.y +=3;
                     a32.position.y +=3;
+                    a42.position.y +=3;
 
                 }
                 else if(keys.a.pressed){
@@ -1377,6 +1390,7 @@
                     a30.position.x +=3;
                     a31.position.x +=3;
                     a32.position.x +=3;
+                    a42.position.x +=3;
                 }
                 else if(keys.d.pressed){
                     m.position.x -= 3;
@@ -1418,6 +1432,7 @@
                     a30.position.x -=3;
                     a31.position.x -=3;
                     a32.position.x -=3;
+                    a42.position.x -=3;
 
 
                 }
@@ -1460,6 +1475,8 @@
                     a30.position.y -=3;
                     a31.position.y -=3;
                     a32.position.y -=3;
+                    a42.position.y -=3;
+
 
                 }else if(keys.q.pressed){
 
